@@ -7,6 +7,7 @@ namespace ManagedDoomCodegen
         static void Main(string[] args)
         {
             GenState.Run();
+            GenStateDefList.Run();
         }
     }
 }

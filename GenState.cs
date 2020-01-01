@@ -20,7 +20,7 @@ public static class GenState
 
                 if (value != "NUMSTATES")
                 {
-                    writer.WriteLine(ToCsStyle(value));
+                    writer.WriteLine(ToCsStyle(value) + ",");
                 }
                 else
                 {
@@ -37,7 +37,7 @@ public static class GenState
         return File.ReadLines(srcFile)
                    .SkipWhile(line => line.Trim() != "S_NULL,")
                    .TakeWhile(line => line.Trim() != "} statenum_t;")
-                   .Select(line => line.Trim());
+                   .Select(line => line.Trim().Replace(",", ""));
     }
 
     private static string ToCsStyle(string value)
@@ -47,6 +47,13 @@ public static class GenState
         foreach (var x in split.Skip(1))
         {
             sb.Append(ToUpperFirst(x));
+        }
+        for (var i = 0; i < sb.Length - 1; i++)
+        {
+            if ('0' <= sb[i] && sb[i] <= '9' && 'a' <= sb[i + 1] && sb[i + 1] <= 'z')
+            {
+                sb[i + 1] = (char)(sb[i + 1] - 'a' + 'A');
+            }
         }
         return sb.ToString();
     }
