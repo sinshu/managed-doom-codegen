@@ -46,7 +46,7 @@ public static class GenStateDefList
         var frame = split[1];
         var tics = split[2];
         var action = "null";
-        var next = ToCsStyle(split[4]);
+        var next = CToCs.State(split[4]);
         var misc1 = split[5];
         var misc2 = split[6];
 
@@ -57,31 +57,6 @@ public static class GenStateDefList
             + action + ", "
             + "State." + next + ", "
             + misc1 + ", "
-            + misc2 + "), // " + "State." + ToCsStyle(comment);
-    }
-
-    private static string ToCsStyle(string value)
-    {
-        var split = value.Split('_');
-        var sb = new StringBuilder();
-        foreach (var x in split.Skip(1))
-        {
-            sb.Append(ToUpperFirst(x));
-        }
-        for (var i = 0; i < sb.Length - 1; i++)
-        {
-            if ('0' <= sb[i] && sb[i] <= '9' && 'a' <= sb[i + 1] && sb[i + 1] <= 'z')
-            {
-                sb[i + 1] = (char)(sb[i + 1] - 'a' + 'A');
-            }
-        }
-        return sb.ToString();
-    }
-
-    private static string ToUpperFirst(string value)
-    {
-        var upper = value.ToUpper();
-        var lower = value.ToLower();
-        return upper.Substring(0, 1) + lower.Substring(1);
+            + misc2 + "), // " + "State." + CToCs.State(comment);
     }
 }

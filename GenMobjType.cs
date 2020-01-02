@@ -4,23 +4,23 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-public static class GenState
+public static class GenMobjType
 {
     private static readonly string srcFile = @"orig\info.h";
 
     public static void Run()
     {
-        Console.Write("GenState...");
+        Console.Write("GenMobjType...");
 
-        using (var writer = new StreamWriter("State.cs"))
+        using (var writer = new StreamWriter("MobjType.cs"))
         {
             foreach (var value in Read())
             {
                 writer.Write("        ");
 
-                if (value != "NUMSTATES")
+                if (value != "NUMMOBJTYPES")
                 {
-                    writer.WriteLine(CToCs.State(value) + ",");
+                    writer.WriteLine(CToCs.MobjType(value) + ",");
                 }
                 else
                 {
@@ -35,8 +35,8 @@ public static class GenState
     private static IEnumerable<string> Read()
     {
         return File.ReadLines(srcFile)
-                   .SkipWhile(line => line.Trim() != "S_NULL,")
-                   .TakeWhile(line => line.Trim() != "} statenum_t;")
+                   .SkipWhile(line => line.Trim() != "MT_PLAYER,")
+                   .TakeWhile(line => line.Trim() != "")
                    .Select(line => line.Trim().Replace(",", ""));
     }
 }

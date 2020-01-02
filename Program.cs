@@ -8,6 +8,9 @@ namespace ManagedDoomCodegen
         {
             GenState.Run();
             GenStateDefList.Run();
+            GenSfx.Run();
+            GenMobjType.Run();
+            GenMobjInfoList.Run();
         }
     }
 }

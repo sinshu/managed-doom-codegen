@@ -4,23 +4,23 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-public static class GenState
+public static class GenSfx
 {
-    private static readonly string srcFile = @"orig\info.h";
+    private static readonly string srcFile = @"orig\sounds.h";
 
     public static void Run()
     {
-        Console.Write("GenState...");
+        Console.Write("GenSfx...");
 
-        using (var writer = new StreamWriter("State.cs"))
+        using (var writer = new StreamWriter("Sfx.cs"))
         {
             foreach (var value in Read())
             {
                 writer.Write("        ");
 
-                if (value != "NUMSTATES")
+                if (value != "NUMSFX")
                 {
-                    writer.WriteLine(CToCs.State(value) + ",");
+                    writer.WriteLine(CToCs.Sfx(value) + ",");
                 }
                 else
                 {
@@ -35,8 +35,8 @@ public static class GenState
     private static IEnumerable<string> Read()
     {
         return File.ReadLines(srcFile)
-                   .SkipWhile(line => line.Trim() != "S_NULL,")
-                   .TakeWhile(line => line.Trim() != "} statenum_t;")
+                   .SkipWhile(line => line.Trim() != "sfx_None,")
+                   .TakeWhile(line => line.Trim() != "} sfxenum_t;")
                    .Select(line => line.Trim().Replace(",", ""));
     }
 }
