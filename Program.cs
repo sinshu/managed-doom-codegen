@@ -11,6 +11,8 @@ namespace ManagedDoomCodegen
             GenSfx.Run();
             GenMobjType.Run();
             GenMobjInfoList.Run();
+            GenPlayerActionStubs.Run();
+            GenMobjActionStubs.Run();
         }
     }
 }

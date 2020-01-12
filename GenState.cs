@@ -24,7 +24,7 @@ public static class GenState
                 }
                 else
                 {
-                    writer.WriteLine("Count");
+                    //writer.WriteLine("Count");
                 }
             }
         }

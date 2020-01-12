@@ -24,7 +24,7 @@ public static class GenMobjType
                 }
                 else
                 {
-                    writer.WriteLine("Count");
+                    //writer.WriteLine("Count");
                 }
             }
         }

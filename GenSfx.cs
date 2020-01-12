@@ -24,7 +24,7 @@ public static class GenSfx
                 }
                 else
                 {
-                    writer.WriteLine("Count");
+                    //writer.WriteLine("Count");
                 }
             }
         }

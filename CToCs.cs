@@ -14,7 +14,7 @@ public static class CToCs
         mobjFlagDic.Add("MF_SOLID", "Solid");
         mobjFlagDic.Add("MF_SHOOTABLE", "Shootable");
         mobjFlagDic.Add("MF_NOSECTOR", "NoSector");
-        mobjFlagDic.Add("MF_NOBLOCKMAP", "NoBlockmap");
+        mobjFlagDic.Add("MF_NOBLOCKMAP", "NoBlockMap");
         mobjFlagDic.Add("MF_AMBUSH", "Ambush");
         mobjFlagDic.Add("MF_JUSTHIT", "JustHit");
         mobjFlagDic.Add("MF_JUSTATTACKED", "JustAttacked");
@@ -35,7 +35,7 @@ public static class CToCs
         mobjFlagDic.Add("MF_COUNTKILL", "CountKill");
         mobjFlagDic.Add("MF_COUNTITEM", "CountItem");
         mobjFlagDic.Add("MF_SKULLFLY", "SkullFly");
-        mobjFlagDic.Add("MF_NOTDMATCH", "NotDmatch");
+        mobjFlagDic.Add("MF_NOTDMATCH", "NotDeathmatch");
         mobjFlagDic.Add("MF_TRANSLATION", "Translation");
         mobjFlagDic.Add("MF_TRANSSHIFT", "TransShift");
     }
