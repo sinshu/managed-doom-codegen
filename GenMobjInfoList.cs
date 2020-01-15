@@ -108,7 +108,7 @@ public static class GenMobjInfoList
                    .Skip(2)
                    .TakeWhile(line => line.Trim() != "};")
                    .Buffer(26)
-                   .Where(buf => buf.Count == 26);
+                   .Where(buf => buf.Count >= 25);
     }
 
     private static string ToCsStyle(string value)
