@@ -14,19 +14,33 @@ public static class GenState
 
         using (var writer = new StreamWriter("State.cs"))
         {
-            foreach (var value in Read())
-            {
-                writer.Write("        ");
+            writer.WriteLine("using System;");
+            writer.WriteLine();
+            writer.WriteLine("namespace ManagedDoom");
+            writer.WriteLine("{");
+            writer.WriteLine("    public enum State");
+            writer.WriteLine("    {");
 
-                if (value != "NUMSTATES")
+            var values = Read().ToArray();
+
+            for (var i = 0; i < values.Length; i++)
+            {
+                var value = values[i];
+
+                writer.Write("        " + CToCs.State(value));
+
+                if (i != values.Length - 1)
                 {
-                    writer.WriteLine(CToCs.State(value) + ",");
+                    writer.WriteLine(",");
                 }
                 else
                 {
-                    //writer.WriteLine("Count");
+                    writer.WriteLine();
                 }
             }
+
+            writer.WriteLine("    }");
+            writer.WriteLine("}");
         }
 
         Console.WriteLine("OK!");
@@ -36,7 +50,7 @@ public static class GenState
     {
         return File.ReadLines(srcFile)
                    .SkipWhile(line => line.Trim() != "S_NULL,")
-                   .TakeWhile(line => line.Trim() != "} statenum_t;")
+                   .TakeWhile(line => line.Trim() != "NUMSTATES")
                    .Select(line => line.Trim().Replace(",", ""));
     }
 }

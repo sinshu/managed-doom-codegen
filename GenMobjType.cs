@@ -14,19 +14,33 @@ public static class GenMobjType
 
         using (var writer = new StreamWriter("MobjType.cs"))
         {
-            foreach (var value in Read())
-            {
-                writer.Write("        ");
+            writer.WriteLine("using System;");
+            writer.WriteLine();
+            writer.WriteLine("namespace ManagedDoom");
+            writer.WriteLine("{");
+            writer.WriteLine("    public enum MobjType");
+            writer.WriteLine("    {");
 
-                if (value != "NUMMOBJTYPES")
+            var values = Read().ToArray();
+
+            for (var i = 0; i < values.Length; i++)
+            {
+                var value = values[i];
+
+                writer.Write("        " + CToCs.MobjType(value));
+
+                if (i != values.Length - 1)
                 {
-                    writer.WriteLine(CToCs.MobjType(value) + ",");
+                    writer.WriteLine(",");
                 }
                 else
                 {
-                    //writer.WriteLine("Count");
+                    writer.WriteLine();
                 }
             }
+
+            writer.WriteLine("    }");
+            writer.WriteLine("}");
         }
 
         Console.WriteLine("OK!");
@@ -36,7 +50,7 @@ public static class GenMobjType
     {
         return File.ReadLines(srcFile)
                    .SkipWhile(line => line.Trim() != "MT_PLAYER,")
-                   .TakeWhile(line => line.Trim() != "")
+                   .TakeWhile(line => line.Trim() != "NUMMOBJTYPES")
                    .Select(line => line.Trim().Replace(",", ""));
     }
 }

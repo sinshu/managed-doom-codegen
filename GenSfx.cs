@@ -14,19 +14,33 @@ public static class GenSfx
 
         using (var writer = new StreamWriter("Sfx.cs"))
         {
-            foreach (var value in Read())
-            {
-                writer.Write("        ");
+            writer.WriteLine("using System;");
+            writer.WriteLine();
+            writer.WriteLine("namespace ManagedDoom");
+            writer.WriteLine("{");
+            writer.WriteLine("    public enum Sfx");
+            writer.WriteLine("    {");
 
-                if (value != "NUMSFX")
+            var values = Read().ToArray();
+
+            for (var i = 0; i < values.Length; i++)
+            {
+                var value = values[i];
+
+                writer.Write("        " + CToCs.Sfx(value));
+
+                if (i != values.Length - 1)
                 {
-                    writer.WriteLine(CToCs.Sfx(value) + ",");
+                    writer.WriteLine(",");
                 }
                 else
                 {
-                    //writer.WriteLine("Count");
+                    writer.WriteLine();
                 }
             }
+
+            writer.WriteLine("    }");
+            writer.WriteLine("}");
         }
 
         Console.WriteLine("OK!");
@@ -36,7 +50,7 @@ public static class GenSfx
     {
         return File.ReadLines(srcFile)
                    .SkipWhile(line => line.Trim() != "sfx_None,")
-                   .TakeWhile(line => line.Trim() != "} sfxenum_t;")
+                   .TakeWhile(line => line.Trim() != "NUMSFX")
                    .Select(line => line.Trim().Replace(",", ""));
     }
 }

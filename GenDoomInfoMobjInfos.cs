@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-public static class GenMobjInfoList
+public static class GenDoomInfoMobjInfos
 {
     private static readonly string srcFile = @"orig\info.c";
 
@@ -14,12 +14,25 @@ public static class GenMobjInfoList
 
     public static void Run()
     {
-        Console.Write("GenMobjInfoList...");
+        Console.Write("GenDoomInfoMobjInfos...");
 
-        using (var writer = new StreamWriter("MobjInfoList.cs"))
+        using (var writer = new StreamWriter("DoomInfo.MobjInfos.cs"))
         {
-            foreach (var buf in Read())
+            writer.WriteLine("using System;");
+            writer.WriteLine();
+            writer.WriteLine("namespace ManagedDoom");
+            writer.WriteLine("{");
+            writer.WriteLine("    public static partial class DoomInfo");
+            writer.WriteLine("    {");
+            writer.WriteLine("        public static readonly MobjInfo[] MobjInfos = new MobjInfo[]");
+            writer.WriteLine("        {");
+
+            var bufs = Read().ToArray();
+
+            for (var i = 0; i < bufs.Length; i++)
             {
+                var buf = bufs[i];
+
                 var mobjType = "MobjType." + CToCs.MobjType(getMobjType.Match(buf[0]).Value);
                 var doomEdNum = buf[1].Trim().Split(',')[0];
                 var spawnState = "State." + CToCs.State(buf[2].Trim().Split(',')[0]);
@@ -69,9 +82,22 @@ public static class GenMobjInfoList
                 writer.WriteLine("                " + damage + ", // damage");
                 writer.WriteLine("                " + activeSound + ", // activeSound");
                 writer.WriteLine("                " + flags + ", // flags");
-                writer.WriteLine("                " + raiseState + "), // raiseState");
-                writer.WriteLine("");
+                writer.WriteLine("                " + raiseState + " // raiseState");
+                if (i != bufs.Length - 1)
+                {
+                    writer.WriteLine("            ),");
+                    writer.WriteLine("");
+                }
+                else
+                {
+                    writer.WriteLine("            )");
+                    writer.WriteLine("");
+                }
             }
+
+            writer.WriteLine("        };");
+            writer.WriteLine("    }");
+            writer.WriteLine("}");
         }
 
         Console.WriteLine("OK!");

@@ -7,12 +7,12 @@ namespace ManagedDoomCodegen
         static void Main(string[] args)
         {
             GenState.Run();
-            GenStateDefList.Run();
+            GenDoomInfoStates.Run();
             GenSfx.Run();
             GenMobjType.Run();
-            GenMobjInfoList.Run();
-            GenPlayerActionStubs.Run();
-            GenMobjActionStubs.Run();
+            GenDoomInfoMobjInfos.Run();
+            GenDoomInfoPlayerActions.Run();
+            GenDoomInfoMobjActions.Run();
         }
     }
 }
