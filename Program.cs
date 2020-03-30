@@ -14,6 +14,7 @@ namespace ManagedDoomCodegen
             GenDoomInfoPlayerActions.Run();
             GenDoomInfoMobjActions.Run();
             GenDoomInfoSpriteNames.Run();
+            GenDoomInfoSfxSfxNames.Run();
         }
     }
 }
