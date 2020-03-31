@@ -16,6 +16,9 @@
     <None Update="orig\info.h">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="orig\p_switch.c">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="orig\sounds.h">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
