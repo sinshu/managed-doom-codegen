@@ -15,7 +15,7 @@ namespace ManagedDoomCodegen
             GenDoomInfoMobjActions.Run();
             GenDoomInfoSpriteNames.Run();
             GenDoomInfoSfxSfxNames.Run();
-            GenSwitchTextureList.Run();
+            GenDoomInfoSwitchNames.Run();
         }
     }
 }
