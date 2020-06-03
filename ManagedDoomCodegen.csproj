@@ -20,6 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="orig\d_englsh.h">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="orig\info.c">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
