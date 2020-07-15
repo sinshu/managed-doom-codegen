@@ -77,6 +77,17 @@ public static class CToCs
         return split[1].ToUpper();
     }
 
+    public static string Bgm(string value)
+    {
+        if (value == "0")
+        {
+            return "NONE";
+        }
+
+        var split = value.Split('_');
+        return split[1].ToUpper();
+    }
+
     public static string State(string value)
     {
         if (value == "0")

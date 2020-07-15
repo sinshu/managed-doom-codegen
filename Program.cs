@@ -20,6 +20,8 @@ namespace ManagedDoomCodegen
             GenDoomKeysEx.Run();
             GenDoomInfoStrings.Run();
             GenDoomInfoMapTitles.Run();
+            GenBgm.Run();
+            GenDoomInfoBgmNames.Run();
         }
     }
 }
