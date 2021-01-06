@@ -51,7 +51,7 @@ public static class GenDoomInfoStrings
                 {
                     var name = tuple.Item1;
                     var body = tuple.Item2[0];
-                    writer.WriteLine("            public static readonly DoomString " + name + " = new DoomString(" + body + ");");
+                    writer.WriteLine("            public static readonly DoomString " + name + " = new DoomString(\"" + name + "\", " + body + ");");
                     returned = false;
                 }
                 else
@@ -62,7 +62,7 @@ public static class GenDoomInfoStrings
                     }
                     var name = tuple.Item1;
                     var body = tuple.Item2;
-                    writer.WriteLine("            public static readonly DoomString " + name + " = new DoomString(");
+                    writer.WriteLine("            public static readonly DoomString " + name + " = new DoomString(\"" + name + "\",");
                     for (var i = 0; i < body.Count - 1; i++)
                     {
                         writer.WriteLine("                " + body[i] + " +");

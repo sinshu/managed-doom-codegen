@@ -22,7 +22,7 @@ public static class GenDoomKeysEx
             writer.WriteLine("{");
             writer.WriteLine("    public static class DoomKeysEx");
             writer.WriteLine("    {");
-            writer.WriteLine("        public static string GetName(this DoomKeys key)");
+            writer.WriteLine("        public static string ToString(DoomKeys key)");
             writer.WriteLine("        {");
             writer.WriteLine("            switch (key)");
             writer.WriteLine("            {");
@@ -35,6 +35,35 @@ public static class GenDoomKeysEx
 
             writer.WriteLine("                default:");
             writer.WriteLine("                    return \"unknown\";");
+            writer.WriteLine("            }");
+            writer.WriteLine("        }");
+            writer.WriteLine();
+
+            writer.WriteLine("        public static DoomKeys Parse(string value)");
+            writer.WriteLine("        {");
+            writer.WriteLine("            switch (value)");
+            writer.WriteLine("            {");
+
+            for (var i = 0; i < values.Length; i++)
+            {
+                if (values[i].Contains("Unknown"))
+                {
+                    continue;
+                }
+
+                if (values[i].Contains("A = 0"))
+                {
+                    writer.WriteLine("                case \"a\":");
+                    writer.WriteLine("                    return DoomKeys.A;");
+                    continue;
+                }
+
+                writer.WriteLine("                case \"" + values[i].ToLower() + "\":");
+                writer.WriteLine("                    return DoomKeys." + values[i] + ";");
+            }
+
+            writer.WriteLine("                default:");
+            writer.WriteLine("                    return DoomKeys.Unknown;");
             writer.WriteLine("            }");
             writer.WriteLine("        }");
             writer.WriteLine("    }");

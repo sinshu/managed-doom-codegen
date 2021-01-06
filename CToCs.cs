@@ -84,8 +84,7 @@ public static class CToCs
             return "NONE";
         }
 
-        var split = value.Split('_');
-        return split[1].ToUpper();
+        return value.Substring(4).ToUpper();
     }
 
     public static string State(string value)
