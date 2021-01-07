@@ -29,7 +29,7 @@ public static class GenDoomInfoBgmNames
             {
                 var value = values[i];
 
-                writer.Write("            new DoomString(\"" + CToCs.Bgm(value) + "\")");
+                writer.Write("            new DoomString(\"" + CToCs.Bgm(value).ToLower() + "\")");
 
                 if (i != values.Length - 1)
                 {

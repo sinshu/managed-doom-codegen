@@ -29,7 +29,7 @@ public static class GenDoomInfoSfxSfxNames
             {
                 var value = values[i];
 
-                writer.Write("            new DoomString(\"" + CToCs.Sfx(value) + "\")");
+                writer.Write("            new DoomString(\"" + CToCs.Sfx(value).ToLower() + "\")");
 
                 if (i != values.Length - 1)
                 {
